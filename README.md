@@ -1,1 +1,1 @@
-# OpenCart4-AlphaPay
+AlphaPay Extension for Opencart v.4.x
