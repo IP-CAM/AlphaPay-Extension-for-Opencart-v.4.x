@@ -66,7 +66,7 @@ class AlphaPay extends \Opencart\System\Engine\Controller
         $paymentData = [
             'amount' => $total,
             'currency' => $this->session->data['currency'],
-            'merchant' => $merchantId,
+            'merchant_id' => $merchantId,
             'order_id' => (string) $orderId,
             'url_return' => $this->url(self::URL_RETURN),
             'url_callback' => $this->url(self::URL_CALLBACK),

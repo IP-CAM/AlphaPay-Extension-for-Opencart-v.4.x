@@ -4,7 +4,7 @@ require_once __DIR__ . '/RequestBuilderException.php';
 
 final class RequestBuilder
 {
-    const API_URL = "https://alphapay-api.alphadex.bg/";
+    const API_URL = "http://127.0.0.1:8001/";
 
     /**
      * @var string
@@ -42,8 +42,8 @@ final class RequestBuilder
             'Accept: application/json',
             'Content-Type: application/json;charset=UTF-8',
             'Content-Length: ' . strlen($body),
-            'merchant: ' . $this->merchantUuid,
-            'sign: ' . md5(base64_encode($body) . $this->secretKey)
+            'Merchant-Id: ' . $this->merchantUuid,
+            'Sign: ' . md5(base64_encode($body) . $this->secretKey)
         ];
 
         curl_setopt_array(
