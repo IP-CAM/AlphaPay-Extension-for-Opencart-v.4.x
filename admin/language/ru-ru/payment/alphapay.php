@@ -6,9 +6,9 @@ $_['heading_title'] = 'AlphaPay';
 // Text
 $_['text_edit'] = 'Редактирование модуля';
 $_['text_payment'] = 'Оплата';
-$_['text_cryptomus'] = '<a onclick="window.open(\'https://alphadex.bg\');"><img src="view/image/payment/alphadex.svg"></a>';
+$_['text_alphapay'] = '<a onclick="window.open(\'https://alphadex.bg\');"><img src="view/image/payment/alphadex.svg"></a>';
 $_['text_success'] = 'Настройки модуля обновлены!';
-$_['text_pay'] = 'Cryptomus';
+$_['text_pay'] = 'AlphaPay';
 $_['text_response_description'] = 'Текст ошибки:';
 $_['text_enot_order_status'] = 'Статус заказа:';
 $_['text_response_code'] = 'Код ошибки:';
