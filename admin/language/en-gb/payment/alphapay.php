@@ -5,7 +5,7 @@ $_['heading_title'] = 'AlphaPay';
 // Text
 $_['text_edit'] = 'Edit module';
 $_['text_payment'] = 'Payment';
-$_['text_alphapay'] = '<a onclick="window.open(\'https://alphadex.bg\');"><img src="/extension/alphapay/admin/view/image/payment/alphapay.png"></a>';
+$_['text_alphapay'] = '<a onclick="window.open(\'https://alphadex.bg\');"><img width="100px" src="/extension/alphapay/admin/view/image/payment/alphapay.png"></a>';
 $_['text_success'] = 'Settings updated';
 $_['text_pay'] = 'AlphaPay';
 $_['text_response_description'] = 'Error text:';
