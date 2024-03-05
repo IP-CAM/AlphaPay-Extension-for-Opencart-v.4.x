@@ -138,7 +138,7 @@ class AlphaPay extends \Opencart\System\Engine\Controller
      */
     public function callback()
     {
-        $this->load->library('log');
+        //$this->load->library('log');
         $data = json_decode(file_get_contents('php://input'), true);
         if (!$this->isSignValid($data)) {
             $this->log->write("Signature is invalid. Please, check your API key.");
