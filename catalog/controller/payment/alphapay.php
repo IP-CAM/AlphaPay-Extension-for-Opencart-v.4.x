@@ -9,9 +9,6 @@ class AlphaPay extends \Opencart\System\Engine\Controller
     const MERCHANT_ID = 'payment_alphapay_merchant_id';
     const LIFETIME = 'payment_alphapay_lifetime';
 
-    const URL_CALLBACK = 'extension/payment/alphapay/callback';
-    const URL_RETURN = 'extension/payment/alphapay/return_back';
-
     const ALPHAPAY_ERROR_STATUSES = [
         'fail',
         'system_fail',
@@ -28,6 +25,24 @@ class AlphaPay extends \Opencart\System\Engine\Controller
         'paid',
         'paid_over',
     ];
+
+    private $separator = '';
+
+    public function __construct($registry) {
+        parent::__construct($registry);
+
+        if (VERSION >= '4.0.2.0') {
+            $this->separator = '.';
+        } else {
+            $this->separator = '|';
+        }
+
+        if (version_compare(phpversion(), '7.1', '>=')) {
+            ini_set('precision', 14);
+            ini_set('serialize_precision', 14);
+        }
+
+    }
 
     /**
      * @return mixed
@@ -63,13 +78,19 @@ class AlphaPay extends \Opencart\System\Engine\Controller
             false
         );
 
+        $urlReturn = $this->url->link('extension/alphapay/payment/alphapay' . $this->separator . 'return_back',
+            'language=' . $this->config->get('config_language'));
+
+        $urlCallback = $this->url->link('extension/alphapay/payment/alphapay' . $this->separator . 'callback',
+            'language=' . $this->config->get('config_language'));
+
         $paymentData = [
             'amount' => $total,
             'currency' => $this->session->data['currency'],
-            'merchant' => $merchantId,
+            'merchant_id' => $merchantId,
             'order_id' => (string) $orderId,
-            'url_return' => $this->url(self::URL_RETURN),
-            'url_callback' => $this->url(self::URL_CALLBACK),
+            'url_return' => $urlReturn,
+            'url_callback' => $urlCallback,
             'lifetime' => $this->config->get(self::LIFETIME),
         ];
 
@@ -117,7 +138,7 @@ class AlphaPay extends \Opencart\System\Engine\Controller
      */
     public function callback()
     {
-        $this->load->library('log');
+        //$this->load->library('log');
         $data = json_decode(file_get_contents('php://input'), true);
         if (!$this->isSignValid($data)) {
             $this->log->write("Signature is invalid. Please, check your API key.");

@@ -12,7 +12,7 @@ final class Payment
     /**
      * @var string
      */
-    private $version = 'v1';
+    private $version = 'api/v1';
 
     /**
      * @param string $paymentKey
